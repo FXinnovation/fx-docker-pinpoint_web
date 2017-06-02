@@ -1,0 +1,4 @@
+[template]
+src  = "pinpoint-web.properties.tmpl"
+dest = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/pinpoint-web.properties"
+keys = []
