@@ -1,0 +1,4 @@
+[template]
+src  = "hbase.properties.tmpl"
+dest = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/hbase.properties"
+keys = []
