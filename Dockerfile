@@ -46,6 +46,8 @@ RUN /resources/build && rm -rf resources
 
 ENTRYPOINT ["entrypoint.sh"]
 
+USER tomcat
+
 LABEL "maintainer"="cloudsquad@fxinnovation.com" \
       "org.label-schema.name"="pinpoint-web" \
       "org.label-schema.base-image.name"="docker.io/library/tomcat" \
