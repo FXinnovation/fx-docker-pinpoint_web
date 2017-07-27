@@ -9,7 +9,7 @@ We do not follow the pinpoint-web release tags in the docker image tags. You can
 
 ## Usage
 ```
-docker run --rm -it -e [KEY]=[VALUE] fxinnovation/pinpoint-web:[TAG]
+docker run --rm -it -e [KEY]=[VALUE] -p 8080:8080 fxinnovation/pinpoint-web:[TAG]
 ```
 Here is the list of keys you can set:
 
