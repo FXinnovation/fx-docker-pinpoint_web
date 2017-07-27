@@ -1,4 +1,4 @@
-FROM tomcat:8.5.15-jre8-alpine 
+FROM tomcat:8.5.16-jre8-alpine
 
 ENV PINPOINTWEB_VERSION=1.6.2 \
     CONFD_VERSION=0.11.0 \
@@ -49,7 +49,7 @@ ENTRYPOINT ["entrypoint.sh"]
 LABEL "maintainer"="cloudsquad@fxinnovation.com" \
       "org.label-schema.name"="pinpoint-web" \
       "org.label-schema.base-image.name"="docker.io/library/tomcat" \
-      "org.label-schema.base-image.version"="8.5.15-jre8-alpine" \
+      "org.label-schema.base-image.version"="8.5.16-jre8-alpine" \
       "org.label-schema.description"="pinpoint-web in a container" \
       "org.label-schema.url"="https://github.com/naver/pinpoint" \
       "org.label-schema.vcs-url"="https://bitbucket.org/fxadmin/public-common-docker-pinpoint_web" \
