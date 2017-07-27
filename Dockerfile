@@ -1,7 +1,6 @@
-FROM tomcat:8.5.15-jre8-alpine 
+FROM tomcat:8.5.16-jre8-alpine
 
-ENV PINPOINTWEB_VERSION=1.6.1 \
-    SUEXEC_VERSION=0.2-r0 \
+ENV PINPOINTWEB_VERSION=1.6.2 \
     CONFD_VERSION=0.11.0 \
     HBASE_CLIENT_HOST=localhost \
     HBASE_CLIENT_PORT=2181 \
@@ -23,7 +22,7 @@ ENV PINPOINTWEB_VERSION=1.6.1 \
     CLUSTER_ZOOKEEPER_SESSIONTIMEOUT=30000 \
     CLUSTER_ZOOKEEPER_RETRY_INTERVAL=60000 \
     CLUSTER_CONNECT_ADDRESS="" \
-    ADMIN_PASSWORD=admin \
+    ADMIN_PASSWORD=changeme \
     CONFIG_SENDUSAGE="true" \
     CONFIG_EDITUSERINFO="true" \
     CONFIG_OPENSOURCE="true" \
@@ -47,10 +46,12 @@ RUN /resources/build && rm -rf resources
 
 ENTRYPOINT ["entrypoint.sh"]
 
+USER tomcat
+
 LABEL "maintainer"="cloudsquad@fxinnovation.com" \
       "org.label-schema.name"="pinpoint-web" \
       "org.label-schema.base-image.name"="docker.io/library/tomcat" \
-      "org.label-schema.base-image.version"="8.5.15-jre8-alpine" \
+      "org.label-schema.base-image.version"="8.5.16-jre8-alpine" \
       "org.label-schema.description"="pinpoint-web in a container" \
       "org.label-schema.url"="https://github.com/naver/pinpoint" \
       "org.label-schema.vcs-url"="https://bitbucket.org/fxadmin/public-common-docker-pinpoint_web" \
@@ -58,7 +59,6 @@ LABEL "maintainer"="cloudsquad@fxinnovation.com" \
       "org.label-schema.schema-version"="1.0.0-rc.1" \
       "org.label-schema.applications.java.version"=$JAVA_VERSION \
       "org.label-schema.applications.tomcat.version"=$TOMCAT_VERSION \
-      "org.label-schema.applications.su-exec.version"=$SUEXEC_VERSION \
       "org.label-schema.applications.confd.version"=$CONFD_VERSION \
       "org.label-schema.applications.pinpoint-web.version"=$PINPOINTWEB_VERSION \
       "org.label-schema.vcs-ref"=$VCS_REF \

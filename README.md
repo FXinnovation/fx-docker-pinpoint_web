@@ -9,7 +9,7 @@ We do not follow the pinpoint-web release tags in the docker image tags. You can
 
 ## Usage
 ```
-docker run --rm -it -e [KEY]=[VALUE] fxinnovation/pinpoint-web:[TAG]
+docker run --rm -it -e [KEY]=[VALUE] -p 8080:8080 fxinnovation/pinpoint-web:[TAG]
 ```
 Here is the list of keys you can set:
 
@@ -30,12 +30,12 @@ Here is the list of keys you can set:
 | HBASE_CLIENT_PARALLEL_SCAN_MAXTHREADS | 64 |
 | HBASE_CLIENT_PARALLEL_SCAN_MAXTHREADSPERSCAN | 16 |
 | CLUSTER_ENABLE | "true" |
-| CLUSTER_WEB_TCP_PORTi | 9997 |
+| CLUSTER_WEB_TCP_PORT | 9997 |
 | CLUSTER_ZOOKEEPER_ADDRESS | localhost |
 | CLUSTER_ZOOKEEPER_SESSIONTIMEOUT | 30000 |
 | CLUSTER_ZOOKEEPER_RETRY_INTERVAL | 60000 |
 | CLUSTER_CONNECT_ADDRESS | "" |
-| ADMIN_PASSWORD | admin |
+| ADMIN_PASSWORD | changeme |
 | CONFIG_SENDUSAGE | "true" |
 | CONFIG_EDITUSERINFO | "true" |
 | CONFIG_OPENSOURCE | "true" |

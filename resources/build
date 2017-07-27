@@ -1,33 +1,46 @@
 #!/bin/sh
 set -e -x
-# Installing su-exec
-apk add --no-cache su-exec=$SUEXEC_VERSION
+
 # Intalling curl and unzip
 apk add --no-cache curl unzip
+
 # Create tomcat group
 addgroup tomcat
+
 # Create tomcat user
 adduser -G tomcat -D -H -s /bin/sh tomcat
-# Cleaning tomcat webapps
+
+# Cleaning tomcat webapps folder
 rm -rf /usr/local/tomcat/webapps/*
+
 # Downloading pinpoint-collector artifact
 curl -L --retry 5 -o /resources/pinpoint-web.war \
   https://github.com/naver/pinpoint/releases/download/${PINPOINTWEB_VERSION}/pinpoint-web-${PINPOINTWEB_VERSION}.war
+
 # Unzipping pinpoint artifact
 unzip -o /resources/pinpoint-web.war -d /usr/local/tomcat/webapps/ROOT
+
 # Adding confd for template generating
 curl -L --retry 5 -o /usr/local/bin/confd \
   https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64
+
 chmod +x /usr/local/bin/confd
 # Creating confd config directory
 mkdir -p /etc/confd/conf.d
 mkdir -p /etc/confd/templates
+
 # Moving templates in place
 cp /resources/confd/templates/* /etc/confd/templates/
+
 # Moving config in place
 cp /resources/confd/conf.d/* /etc/confd/conf.d/
+
 # Adding entrypoint
 mv /resources/entrypoint.sh /usr/local/bin/entrypoint.sh
+
+# Cleaning
 apk del --purge curl unzip
+
 # Changing ownership on tomcat folder
 chown -R tomcat:tomcat /usr/local/tomcat
+chown -R tomcat:tomcat /etc/confd
